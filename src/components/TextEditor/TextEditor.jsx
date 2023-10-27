@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Trash } from "react-bootstrap-icons";
 import s from "./style.module.css";
 import { useDispatch } from "react-redux";
-import { deleteNote } from "store/notes/notes-slice";
+import { deleteNote_by_Id } from "store/notes/notes-slice"; // deleteNote_by_Id import
 
 export function TextCard({ title, content, subtitle, onClick, id }) {
   const [isCardHovered, setIsCardHovered] = useState(false);
@@ -11,7 +11,7 @@ export function TextCard({ title, content, subtitle, onClick, id }) {
 
   function onClickTrash_(e) {
     e.stopPropagation();
-    dispatch(deleteNote(id))
+    dispatch(deleteNote_by_Id(id)) // Delete dispatch
   }
 
   return (
@@ -30,7 +30,7 @@ export function TextCard({ title, content, subtitle, onClick, id }) {
             onMouseEnter={() => setISTrashHovered(true)}
             onMouseLeave={() => setISTrashHovered(false)}
             style={{ color: isTrashHovered ? "#FF7373" : "#b8b8b8" }}
-            onClick={onClickTrash_}
+            onClick={onClickTrash_} // deleteNote_by_Id onclik
           />
         </div>
         <h6 className={`card-subtitle mb-2 text-muted`}>{subtitle}</h6>

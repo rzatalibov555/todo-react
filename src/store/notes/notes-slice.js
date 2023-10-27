@@ -26,9 +26,9 @@ const createNote = createAsyncThunk(
     }
 )
 
-// ======================================================================
+// =================== Delete by ID ===================================================
 
-const deleteNote = createAsyncThunk(
+const deleteNote_by_Id = createAsyncThunk(
     'notes/delete',
     async (id, {dispatch}) => {
         const response = await axios.delete(`${BASE_URL}/${id}`)
@@ -61,13 +61,13 @@ export const noteSlice = createSlice({
     },
 
 
-    // Delete ucun Slice
-    [deleteNote.fulfilled]: (state, action) => {
+    // Delete ucun Slice By ID
+    [deleteNote_by_Id.fulfilled]: (state, action) => {
         state.status = 'succeeded'
         state.notes = state.notes.filter(note => note.id !== action.payload)
     },
   }
 });
 
-export { fetchAll, createNote, deleteNote}
+export { fetchAll, createNote, deleteNote_by_Id}
 export const noteReducer = noteSlice.reducer;
