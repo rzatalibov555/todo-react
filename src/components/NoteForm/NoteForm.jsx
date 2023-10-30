@@ -6,8 +6,8 @@ import { ValidatorService } from "services/validator";
 import s from "./style.module.css";
 
 const VALIDATION_RULES = {
-    title: (value) => ValidatorService.min(value, 3) || ValidatorService.max(value, 10) ,
-    content: (value) => ValidatorService.min(value, 3) || ValidatorService.max(value, 30)
+  title: (value) => ValidatorService.min(value, 3) || ValidatorService.max(value, 10),
+  content: (value) => ValidatorService.min(value, 3) || ValidatorService.max(value, 30)
 }
 
 export function NoteForm({
@@ -19,40 +19,40 @@ export function NoteForm({
   onSubmit,
 }) {
 
-    const [isSubmit, setIsSubmit] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const [formValues, setFormValues] = useState({
     title: "",
     content: "",
-    });
+  });
 
   const [formErrors, setFormErrors] = useState({
     title: "",
     content: "",
-    });
+  });
 
   const updateFormValues = (e) => {
-      const { name, value } = e.target;
-        setFormValues({
-            ...formValues,
-            [name]: value,
-        });
-      isSubmit && validate(name, value);
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+    isSubmit && validate(name, value);
   }
 
-  const hasError = () => {return Object.values(formErrors).some(errMsg => errMsg)}
+  const hasError = () => { return Object.values(formErrors).some(errMsg => errMsg) }
 
-    const validate = (name, value) => {
-        const errorMessage = VALIDATION_RULES[name](value);
-        setFormErrors({ ...formErrors, [name]: errorMessage });
-    }
+  const validate = (name, value) => {
+    const errorMessage = VALIDATION_RULES[name](value);
+    setFormErrors({ ...formErrors, [name]: errorMessage });
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmit(true);
     if (!hasError()) {
-          onSubmit(formValues);
-      }
+      onSubmit(formValues);
+    }
   }
 
   const actionIcons = (
@@ -73,7 +73,7 @@ export function NoteForm({
         className="form-control"
         onChange={(e) => updateFormValues(e)}
       />
-        <FieldError msg={formErrors?.title} />
+      <FieldError msg={formErrors?.title} />
     </div>
   );
 
@@ -87,7 +87,7 @@ export function NoteForm({
         onChange={(e) => updateFormValues(e)}
         row="5"
       />
-        <FieldError msg={formErrors?.content} />
+      <FieldError msg={formErrors?.content} />
     </div>
   );
 
@@ -109,12 +109,12 @@ export function NoteForm({
         </div>
       </div>
       <div className={`mb-3 ${s.title_input_container}`}>
-            {titleInput}
+        {titleInput}
       </div>
       <div className="mb-3">
-          {contentInput}
+        {contentInput}
       </div>
-        {submitBtn}
+      {submitBtn}
     </div>
   );
 }

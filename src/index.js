@@ -16,7 +16,7 @@ import { store } from "./store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <StrictMode>
+  // <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
           <Routes>
@@ -29,5 +29,5 @@ root.render(
           </Routes>
       </BrowserRouter>
     </Provider>
-  </StrictMode>
+  /* </StrictMode> */
 );

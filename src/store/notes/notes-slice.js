@@ -37,9 +37,22 @@ const deleteNote_by_Id = createAsyncThunk(
     }
 )
 
-// ======================================================================
+// ====================================================================================
+
+// =================== Update by ID ===================================================
+
+const updateNote_by_Id = createAsyncThunk(
+    'notes/update',
+    async (id, {dispatch}) => {
+        const response = await axios.put(`${BASE_URL}/${id}`)
+        return id;
+        // dispatch(fetchAll())
+    
+    })
 
 
+
+// ====================================================================================
 
 
 export const noteSlice = createSlice({
@@ -69,5 +82,5 @@ export const noteSlice = createSlice({
   }
 });
 
-export { fetchAll, createNote, deleteNote_by_Id}
+export { fetchAll, createNote, deleteNote_by_Id, updateNote_by_Id}
 export const noteReducer = noteSlice.reducer;
