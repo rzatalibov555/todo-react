@@ -3,10 +3,10 @@ const BASE_URL = "http://localhost:3200/notes";
 
 export class NoteAPI {
 
-  static async create(formValues) {
-    const response = await axios.post(BASE_URL, formValues);
-    return response.data;
-  }
+  // static async create(formValues) {
+  //   const response = await axios.post(BASE_URL, formValues);
+  //   return response.data;
+  // }
   static async fetchAll() {
     const response = await axios.get(BASE_URL);
     return response.data;

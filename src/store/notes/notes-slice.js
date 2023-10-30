@@ -30,7 +30,7 @@ const createNote = createAsyncThunk(
 
 const deleteNote_by_Id = createAsyncThunk(
     'notes/delete',
-    async (id, {dispatch}) => {
+    async (id) => {
         const response = await axios.delete(`${BASE_URL}/${id}`)
         return id;
         // dispatch(fetchAll())
@@ -41,13 +41,18 @@ const deleteNote_by_Id = createAsyncThunk(
 
 // =================== Update by ID ===================================================
 
+const updateNote_get_by_Id = createAsyncThunk(
+    'notes/get_id',
+    async (id) => {
+        const response = await axios.get(`${BASE_URL}/${id}`)
+        return response.data;
+    })
+
 const updateNote_by_Id = createAsyncThunk(
     'notes/update',
-    async (id, {dispatch}) => {
+    async (id) => {
         const response = await axios.put(`${BASE_URL}/${id}`)
-        return id;
-        // dispatch(fetchAll())
-    
+        return response.data;
     })
 
 
@@ -72,6 +77,11 @@ export const noteSlice = createSlice({
         state.status = 'failed'
         state.error = action.error.message
     },
+    [updateNote_get_by_Id.fulfilled]: (state, action) => {
+        state.status = 'succeeded'
+        state.notes = action.payload
+        state.error = null
+    },
 
 
     // Delete ucun Slice By ID
@@ -82,5 +92,5 @@ export const noteSlice = createSlice({
   }
 });
 
-export { fetchAll, createNote, deleteNote_by_Id, updateNote_by_Id}
+export { fetchAll, createNote, deleteNote_by_Id, updateNote_by_Id, updateNote_get_by_Id}
 export const noteReducer = noteSlice.reducer;
